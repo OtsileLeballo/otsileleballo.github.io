@@ -1,202 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otsile Leballo | SOC Analyst Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Otsile Leballo | SOC Analyst</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0e17;
-            color: #e2e8f0;
-            line-height: 1.6;
+            background: #080c14;
+            color: #e8edf5;
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        
+
+        /* ===== ANIMATED PARTICLE BACKGROUND ===== */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: #2563eb;
+            opacity: 0;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+            10%  { opacity: 0.2; }
+            90%  { opacity: 0.2; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* ===== CONTAINER ===== */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
         }
-        
+
+        /* ===== HEADER WITH GLOW ANIMATION ===== */
         header {
-            background: linear-gradient(135deg, #0f1724, #1a2332);
-            padding: 50px 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
+            background: linear-gradient(145deg, #111b2e, #0a1220);
+            padding: 60px 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
             text-align: center;
-            border: 1px solid #1e2d45;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
         }
-        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.08), transparent 60%);
+            animation: headerGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes headerGlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(5%, 5%); }
+        }
+
         header h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.5px;
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
         }
-        
         header .badge {
             display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 5px 18px;
-            border-radius: 20px;
+            background: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            padding: 6px 22px;
+            border-radius: 40px;
             font-size: 0.8rem;
             font-weight: 600;
-            margin-top: 10px;
+            letter-spacing: 0.5px;
+            margin-top: 12px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            backdrop-filter: blur(4px);
+            position: relative;
+            z-index: 1;
         }
-        
+        header .badge::before { content: '● '; color: #22c55e; }
         header p {
             color: #94a3b8;
-            font-size: 1.1rem;
-            margin-top: 10px;
+            font-size: 1.15rem;
+            margin-top: 14px;
+            position: relative;
+            z-index: 1;
         }
-        
+
+        /* ===== GLASS-MORPHISM CARDS ===== */
         .section {
-            background: #111b2e;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #1e2d45;
+            background: rgba(17, 27, 46, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 32px 36px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.4s ease;
         }
-        
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+        }
+
         .section h2 {
             font-size: 1.5rem;
             font-weight: 700;
-            border-bottom: 3px solid #2563eb;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(37, 99, 235, 0.2);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
             color: #ffffff;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        
-        .section h3 {
-            font-size: 1.1rem;
+        .section h2 span {
+            background: rgba(37, 99, 235, 0.12);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
             color: #60a5fa;
-            margin-top: 15px;
+            border: 1px solid rgba(37, 99, 235, 0.15);
         }
-        
-        .section p {
-            color: #cbd5e1;
-            margin-bottom: 10px;
-        }
-        
+
+        /* ===== SKILLS WITH ANIMATED GRID ===== */
         .skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 14px;
         }
-        
         .skills-grid li {
             list-style: none;
-            background: #0f1a2e;
-            padding: 10px 15px;
-            border-radius: 8px;
+            background: rgba(15, 26, 46, 0.6);
+            padding: 12px 18px;
+            border-radius: 12px;
             font-size: 0.9rem;
-            color: #cbd5e1;
-            border: 1px solid #1e2d45;
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            cursor: default;
         }
-        
+        .skills-grid li:hover {
+            background: rgba(37, 99, 235, 0.12);
+            border-color: rgba(37, 99, 235, 0.3);
+            transform: scale(1.02) translateX(4px);
+        }
         .skills-grid li::before {
-            content: "🔹 ";
+            content: '▹';
             color: #2563eb;
+            font-weight: 700;
+            transition: transform 0.2s;
         }
-        
+        .skills-grid li:hover::before {
+            transform: rotate(90deg);
+        }
+
+        /* ===== PROJECTS WITH STATUS INDICATORS ===== */
         .project-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #1e2d45;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: padding-left 0.3s ease, background 0.2s;
+            border-radius: 8px;
+            padding-left: 0;
         }
-        
-        .project-item:last-child {
-            border-bottom: none;
+        .project-item:hover {
+            padding-left: 12px;
+            background: rgba(37, 99, 235, 0.04);
         }
-        
+        .project-item:last-child { border-bottom: none; }
+
+        .project-item .status {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-left: 8px;
+        }
+        .status.online {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.15);
+        }
         .project-item a {
             color: #60a5fa;
             text-decoration: none;
             font-weight: 600;
+            transition: color 0.2s, text-decoration 0.2s;
         }
-        
-        .project-item a:hover {
-            text-decoration: underline;
-            color: #93c5fd;
-        }
-        
+        .project-item a:hover { color: #93c5fd; text-decoration: underline; }
+
         .tag {
             display: inline-block;
-            background: #1e2d45;
+            background: rgba(30, 45, 69, 0.6);
             color: #94a3b8;
-            padding: 2px 12px;
-            border-radius: 12px;
+            padding: 2px 14px;
+            border-radius: 40px;
             font-size: 0.7rem;
-            margin-right: 5px;
+            margin-right: 6px;
             margin-top: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.2s;
         }
-        
+        .tag:hover {
+            background: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        /* ===== CONTACT WITH INTERACTIVE LINKS ===== */
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 10px;
+            gap: 20px 30px;
+            margin-top: 8px;
         }
-        
         .contact-info a {
-            color: #60a5fa;
+            color: #94a3b8;
             text-decoration: none;
             font-weight: 500;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        
+        .contact-info a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
         .contact-info a:hover {
-            color: #93c5fd;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #475569;
-            font-size: 0.9rem;
-        }
-        
-        .highlight {
             color: #60a5fa;
         }
-        
-        @media (max-width: 600px) {
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            header h1 {
-                font-size: 1.8rem;
-            }
+        .contact-info a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 700px) {
+            header h1 { font-size: 2.2rem; }
+            .section { padding: 24px 20px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-info { flex-direction: column; gap: 10px; }
+        }
+
+        /* ===== SCROLL ANIMATIONS (Intersection Observer) ===== */
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0, 0, 1) forwards;
+        }
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        .section:nth-child(7) { animation-delay: 0.7s; }
+        .section:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== TYPING EFFECT CURSOR ===== */
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: #2563eb;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 0.9s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #475569;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+
+    <!-- ===== ANIMATED PARTICLE BACKGROUND ===== -->
+    <div id="particles"></div>
+
     <div class="container">
+        <!-- ===== HEADER ===== -->
         <header>
             <h1>Otsile Leballo</h1>
-            <span class="badge">🔍 Future SOC Analyst</span>
-            <p>Final-year BSc IT Student | Incident Response | Threat Detection | Technology Risk</p>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #64748b;">Gauteng | otsileleballo@gmail.com | 0832948534</p>
+            <div class="badge">● Future SOC Analyst</div>
+            <p>
+                <span id="typing-text"></span><span class="typing-cursor"></span>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.95rem; color: #64748b;">
+                Gauteng · otsileleballo@gmail.com · 083 294 8534
+            </p>
         </header>
 
-        <!-- About Section -->
+        <!-- ===== ABOUT ===== -->
         <div class="section">
-            <h2>About Me</h2>
-            <p>Final-year BSc IT student with a strong passion for cybersecurity and hands-on experience in <span class="highlight">security operations, log analysis, and incident response</span>. Proficient in SIEM platforms, threat detection, and the <span class="highlight">MITRE ATT&CK framework</span>. A focused, analytical, and detail-oriented individual with a keen interest in Technology Risk and IT controls. Available for graduate programmes and internships in 2026.</p>
+            <h2>About Me <span>whoami</span></h2>
+            <p>
+                Final-year BSc IT student with a strong passion for cybersecurity and hands-on experience in
+                <span style="color:#60a5fa;">security operations, log analysis, and incident response</span>.
+                Proficient in SIEM platforms, threat detection, and the
+                <span style="color:#60a5fa;">MITRE ATT&CK framework</span>.
+                A focused, analytical, and detail-oriented individual with a keen interest in Technology Risk and IT controls.
+                Available for graduate programmes and internships in <strong>2026</strong>.
+            </p>
         </div>
 
-        <!-- Skills Section -->
+        <!-- ===== SKILLS ===== -->
         <div class="section">
-            <h2>Cybersecurity & SOC Skills</h2>
-            <div class="skills-grid">
+            <h2>Cybersecurity &amp; SOC Skills <span>toolkit</span></h2>
+            <ul class="skills-grid">
                 <li>SOC Operations &amp; Incident Response</li>
                 <li>Log Analysis &amp; Threat Detection</li>
                 <li>SIEM Fundamentals (Elastic, Sentinel)</li>
@@ -207,105 +371,205 @@
                 <li>Python for Security Automation</li>
                 <li>Networking &amp; Active Directory</li>
                 <li>Linux (Ubuntu/Kali) &amp; Windows</li>
-            </div>
+            </ul>
         </div>
 
-        <!-- Projects Section -->
+        <!-- ===== PROJECTS ===== -->
         <div class="section">
-            <h2>SOC Investigations</h2>
-            
+            <h2>SOC Investigations <span>portfolio</span></h2>
+
             <div class="project-item">
                 <h3>🔴 Phishing Investigation Report</h3>
-                <p>Conducted a comprehensive investigation of a simulated typosquatting phishing attack. Performed email header analysis (SPF, DKIM, DMARC), leveraged VirusTotal and WHOIS, and produced a professional client-ready report.</p>
+                <p>Simulated typosquatting phishing attack. Performed email header analysis (SPF, DKIM, DMARC), leveraged VirusTotal and WHOIS, and produced a professional client-ready report.</p>
                 <span class="tag">MITRE T1566</span>
                 <span class="tag">Phishing</span>
                 <span class="tag">IOC Extraction</span>
+                <span class="status online">● Complete</span>
                 <p><a href="https://github.com/OtsileLeballo/phishing-investigation-report">📂 View on GitHub →</a></p>
             </div>
-            
+
             <div class="project-item">
                 <h3>🔴 Credential Dumping Investigation</h3>
-                <p>Investigated a critical LSASS memory dump incident using ProcDump on a Domain Controller. Traced attack chain, identified compromised accounts, applied NIST containment actions, and documented lessons learned.</p>
+                <p>LSASS memory dump via ProcDump on a Domain Controller. Traced attack chain, identified compromised accounts, applied NIST containment actions.</p>
                 <span class="tag">MITRE T1003.001</span>
                 <span class="tag">Credential Dumping</span>
                 <span class="tag">IR Lifecycle</span>
+                <span class="status online">● Complete</span>
             </div>
-            
+
             <div class="project-item">
                 <h3>🔴 Azure AD Account Compromise</h3>
-                <p>Investigated a credential stuffing attack against a Finance Director account. Identified MFA bypass via legacy SMTP auth, discovered mail forwarding rule, and executed full incident response lifecycle.</p>
+                <p>Credential stuffing against a Finance Director account. Identified MFA bypass via legacy SMTP auth, discovered mail forwarding rule, executed full incident response.</p>
                 <span class="tag">MITRE T1110.001</span>
                 <span class="tag">Identity Compromise</span>
                 <span class="tag">Containment</span>
+                <span class="status online">● Complete</span>
             </div>
-            
+
             <div class="project-item">
                 <h3>🔐 User Activity Monitor</h3>
-                <p>Python-based tool that analyzes login logs to detect brute force attacks, after-hours logins, and unusual IP addresses. Implemented regex parsing and automated reporting.</p>
+                <p>Python-based tool that analyzes login logs to detect brute force attacks, after-hours logins, and unusual IP addresses. Regex parsing + automated reporting.</p>
                 <span class="tag">Python</span>
                 <span class="tag">Log Analysis</span>
                 <span class="tag">Detection</span>
+                <span class="status online">● Complete</span>
                 <p><a href="https://github.com/OtsileLeballo/user-activity-monitor">📂 View on GitHub →</a></p>
             </div>
         </div>
 
-        <!-- Education Section -->
+        <!-- ===== EDUCATION ===== -->
         <div class="section">
-            <h2>Education</h2>
+            <h2>Education <span>academics</span></h2>
             <h3>North-West University</h3>
-            <p><strong>BSc Information Technology</strong> | Expected: December 2026</p>
-            <p>Relevant Coursework: Information Systems, Database Management (SQL), Networking (TCP/IP), IT Security Fundamentals, Data Analysis &amp; Reporting</p>
+            <p><strong>BSc Information Technology</strong> · Expected: <strong>December 2026</strong></p>
+            <p style="color:#94a3b8; font-size:0.95rem;">
+                Information Systems · Database Management (SQL) · Networking (TCP/IP) · IT Security · Data Analysis &amp; Reporting
+            </p>
         </div>
 
-        <!-- Experience Section -->
+        <!-- ===== EXPERIENCE ===== -->
         <div class="section">
-            <h2>Experience</h2>
-            <h3>Python Tutor | North-West University</h3>
-            <p><em>Feb 2025 – June 2025</em></p>
-            <p>Facilitated interactive lab sessions for first-year programming students. Developed clear explanations of technical concepts and guided students through problem-solving techniques.</p>
+            <h2>Experience <span>work</span></h2>
+            <h3>Python Tutor · North-West University</h3>
+            <p style="color:#94a3b8; font-size:0.9rem;">Feb 2025 – June 2025</p>
+            <p>Facilitated interactive lab sessions for first-year students. Developed clear explanations of technical concepts and guided students through problem-solving techniques.</p>
         </div>
 
-        <!-- Certifications Section -->
+        <!-- ===== CERTIFICATIONS ===== -->
         <div class="section">
-            <h2>Certifications & Training</h2>
-            <ul style="padding-left: 20px; color: #cbd5e1;">
-                <li>✓ Cisco Networking Academy – Intro to Cybersecurity (May 2025)</li>
-                <li>✓ Forage – Cyber Security Operations Simulation (Dec 2025)</li>
-                <li>✓ TryHackMe – SOC Level 1 Path (Ongoing)</li>
-                <li>✓ Microsoft Azure Fundamentals (AZ-900) – Self-Study</li>
-                <li>✓ CompTIA Security+ – In Progress (Expected 2026)</li>
+            <h2>Certifications &amp; Training <span>badges</span></h2>
+            <ul style="padding-left: 20px; color: #cbd5e1; list-style: none;">
+                <li style="padding: 4px 0;">✓ Cisco Networking Academy – Intro to Cybersecurity (May 2025)</li>
+                <li style="padding: 4px 0;">✓ Forage – Cyber Security Operations Simulation (Dec 2025)</li>
+                <li style="padding: 4px 0;">✓ TryHackMe – SOC Level 1 Path (Ongoing)</li>
+                <li style="padding: 4px 0;">✓ Microsoft Azure Fundamentals (AZ-900) – Self-Study</li>
+                <li style="padding: 4px 0;">✓ CompTIA Security+ – In Progress (Expected 2026)</li>
             </ul>
         </div>
 
-        <!-- MITRE ATT&CK Section -->
+        <!-- ===== MITRE ATT&CK ===== -->
         <div class="section">
-            <h2>MITRE ATT&CK Techniques</h2>
-            <div class="skills-grid">
-                <li>T1003.001 - OS Credential Dumping</li>
-                <li>T1110.001 - Brute Force: Password Guessing</li>
-                <li>T1566 - Phishing</li>
-                <li>T1098.005 - Email Forwarding Rules</li>
-                <li>T1078.002 - Valid Accounts: Domain Accounts</li>
-                <li>T1136 - Create Account</li>
-                <li>T1197 - BITS Jobs</li>
-                <li>T1218 - Signed Binary Proxy Execution</li>
-            </div>
+            <h2>MITRE ATT&amp;CK Techniques <span>mapping</span></h2>
+            <ul class="skills-grid">
+                <li>T1003.001 – OS Credential Dumping</li>
+                <li>T1110.001 – Brute Force: Password Guessing</li>
+                <li>T1566 – Phishing</li>
+                <li>T1098.005 – Email Forwarding Rules</li>
+                <li>T1078.002 – Valid Accounts: Domain Accounts</li>
+                <li>T1136 – Create Account</li>
+                <li>T1197 – BITS Jobs</li>
+                <li>T1218 – Signed Binary Proxy Execution</li>
+            </ul>
         </div>
 
-        <!-- Contact Section -->
+        <!-- ===== CONTACT ===== -->
         <div class="section">
-            <h2>Contact</h2>
+            <h2>Contact <span>connect</span></h2>
             <div class="contact-info">
                 <a href="mailto:otsileleballo@gmail.com">📧 otsileleballo@gmail.com</a>
-                <a href="tel:+27832948534">📞 0832948534</a>
+                <a href="tel:+27832948534">📞 083 294 8534</a>
                 <a href="https://github.com/OtsileLeballo">🐙 GitHub</a>
                 <a href="https://linkedin.com/in/otsile-leballo">🔗 LinkedIn</a>
             </div>
         </div>
 
         <footer>
-            &copy; 2026 Otsile Leballo | SOC Analyst Portfolio | Built with HTML, CSS, and JavaScript
+            &copy; 2026 Otsile Leballo · Built with HTML, CSS &amp; JavaScript · SOC Analyst Portfolio
         </footer>
     </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // =========================================================
+        // 1. PARTICLE BACKGROUND
+        // =========================================================
+        (function createParticles() {
+            const container = document.getElementById('particles');
+            const count = 45;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.width = p.style.height = (2 + Math.random() * 5) + 'px';
+                p.style.animationDuration = (14 + Math.random() * 26) + 's';
+                p.style.animationDelay = (Math.random() * 20) + 's';
+                p.style.opacity = 0.05 + Math.random() * 0.12;
+                container.appendChild(p);
+            }
+        })();
+
+        // =========================================================
+        // 2. TYPING EFFECT (Modern JS)
+        // =========================================================
+        (function typeEffect() {
+            const text = "Final-year BSc IT · Incident Response · Threat Detection · Technology Risk";
+            const element = document.getElementById('typing-text');
+            let index = 0;
+            let isDeleting = false;
+
+            function type() {
+                if (!isDeleting) {
+                    // Typing forward
+                    element.textContent = text.substring(0, index + 1);
+                    index++;
+                    if (index === text.length) {
+                        // Pause at the end before starting over (optional)
+                        setTimeout(() => {
+                            isDeleting = true;
+                            setTimeout(type, 600);
+                        }, 3000);
+                        return;
+                    }
+                    setTimeout(type, 30 + Math.random() * 40);
+                } else {
+                    // Deleting (optional, keep for effect)
+                    // Uncomment below if you want it to delete and retype
+                    // element.textContent = text.substring(0, index - 1);
+                    // index--;
+                    // if (index === 0) {
+                    //     isDeleting = false;
+                    //     setTimeout(type, 500);
+                    //     return;
+                    // }
+                    // setTimeout(type, 20);
+                }
+            }
+
+            // Start the effect
+            setTimeout(type, 300);
+        })();
+
+        // =========================================================
+        // 3. INTERSECTION OBSERVER (Scroll Animations)
+        // =========================================================
+        (function scrollAnimations() {
+            const sections = document.querySelectorAll('.section');
+            
+            // Reset opacity and transform so they start hidden
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            sections.forEach(section => observer.observe(section));
+        })();
+
+        // =========================================================
+        // 4. DYNAMIC YEAR IN FOOTER
+        // =========================================================
+        document.querySelector('footer').innerHTML = 
+            `&copy; ${new Date().getFullYear()} Otsile Leballo · Built with HTML, CSS &amp; JavaScript · SOC Analyst Portfolio`;
+    </script>
+
 </body>
 </html>
